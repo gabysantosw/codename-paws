@@ -9,14 +9,13 @@ class Animal {
    * @param {string} photo
    * @param {string} description
    * @param {Boolean} isAdoptable
-   * @param {Boolean} adoptionStatus
    */
-  constructor(name, photo, description, isAdoptable, adoptionStatus) {
+  constructor(name, photo = '', description = '', isAdoptable = true) {
     this.name = name;
     this.photo = photo;
     this.description = description;
     this.isAdoptable = isAdoptable;
-    this.adoptionStatus = false;
+    this.isAdopted = false;
     this.postIncludedIn = []
   }
 }

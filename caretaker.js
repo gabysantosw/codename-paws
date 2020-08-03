@@ -9,7 +9,7 @@ class Caretaker {
    * @param {string} email
    * @param {string} city
    */
-  constructor(name, email, city) {
+  constructor(name, email = '', city = '') {
     this.name = name;
     this.email = email;
     this.city = city;

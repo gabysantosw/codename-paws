@@ -5,15 +5,15 @@
 class Post {
   /**
    * Creates an instance of Post
-   * @param {string} photo
    * @param {string} title
+   * @param {string} photo
    * @param {string} content
    * @param {Array} animals
    * @param {Array} tags
    */
-  constructor(photo, title, content, animals, tags) {
-    this.photo = photo;
+  constructor(title = '', photo = '', content = '', animals = [], tags = []) {
     this.title = title;
+    this.photo = photo;
     this.content = content;
     this.tags = tags;
     this.animals = animals;
