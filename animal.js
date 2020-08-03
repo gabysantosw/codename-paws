@@ -20,3 +20,5 @@ class Animal {
     this.postIncludedIn = []
   }
 }
+
+module.export = Animal;

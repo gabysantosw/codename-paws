@@ -43,3 +43,4 @@ class Caretaker {
   }
 }
 
+module.export = Caretaker;

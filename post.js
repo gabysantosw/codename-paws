@@ -20,3 +20,5 @@ class Post {
     this.creationDate = new Date();
   }
 }
+
+module.export = Post;
