@@ -1,4 +1,5 @@
 const Cfonts = require('cfonts');
+require('colors');
 
 /**
  * Class to represent a caretaker
@@ -52,10 +53,10 @@ class Caretaker {
       background: 'black',
     });
     return `
-${this.name}
-Animals in care: ${this.animals.map(animal => `${animal.name}`).join(', ')}
-Posts (${this.posts.length}):
-${this.posts.map(post => `- ${post.title}`).join('\n')}
+${'Name'.rainbow.bold}: ${this.name.bold.cyan}
+${'Animals in care'.rainbow.bold}: ${this.animals.map(animal => `${animal.name}`).join(', ').bold.cyan}
+${'Posts'.rainbow.bold} (${String(this.posts.length).bold.cyan}):
+${this.posts.map(post => `${'- '.bold.cyan}${post.title}`).join('\n')}
         `;
   }
 }

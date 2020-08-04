@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/gabysantosw/codename-paws#readme",
   "dependencies": {
-    "cfonts": "^2.8.6"
+    "cfonts": "^2.8.6",
+    "colors": "^1.4.0"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
