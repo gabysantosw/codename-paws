@@ -30,7 +30,9 @@
     "url": "https://github.com/gabysantosw/codename-paws/issues"
   },
   "homepage": "https://github.com/gabysantosw/codename-paws#readme",
-  "dependencies": {},
+  "dependencies": {
+    "cfonts": "^2.8.6"
+  },
   "devDependencies": {
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",

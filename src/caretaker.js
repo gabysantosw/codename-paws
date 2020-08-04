@@ -1,3 +1,5 @@
+const Cfonts = require('cfonts');
+
 /**
  * Class to represent a caretaker
  * @class Caretaker
@@ -43,12 +45,18 @@ class Caretaker {
   }
 
   get info() {
+    Cfonts.say('  - Dashboard -  ', {
+      font: 'tiny',
+      colors: ['cyan'],
+      letterSpacing: 2,
+      background: 'black',
+    });
     return `
 ${this.name}
-Animals in care: ${this.animals.map(animal => `${animal.name}`).join('\n')}
-Posts (${this.posts.length}): 
+Animals in care: ${this.animals.map(animal => `${animal.name}`).join(', ')}
+Posts (${this.posts.length}):
 ${this.posts.map(post => `- ${post.title}`).join('\n')}
-    `;
+        `;
   }
 }
 
