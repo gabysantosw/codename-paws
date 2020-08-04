@@ -16,8 +16,8 @@ class Animal {
     this.description = description;
     this.isAdoptable = isAdoptable;
     this.isAdopted = false;
-    this.postIncludedIn = []
+    this.postIncludedIn = [];
   }
 }
 
-module.export = Animal;
+module.exports = Animal;

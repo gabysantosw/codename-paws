@@ -11,7 +11,7 @@ class Post {
    * @param {Array} animals
    * @param {Array} tags
    */
-  constructor(title = '', photo = '', content = '', animals = [], tags = []) {
+  constructor(title, photo = '', content = '', animals = [], tags = []) {
     this.title = title;
     this.photo = photo;
     this.content = content;
@@ -21,4 +21,4 @@ class Post {
   }
 }
 
-module.export = Post;
+module.exports = Post;

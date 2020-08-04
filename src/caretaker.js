@@ -31,7 +31,7 @@ class Caretaker {
    * @param {Object} animal
    */
   addAnimal(animal) {
-    this.animals.push(new Animal(...animal));
+    this.animals.push(animal);
   }
 
   /**
@@ -39,8 +39,17 @@ class Caretaker {
    * @param {Object} post
    */
   addPost(post) {
-    this.posts.push(new Post(...post));
+    this.posts.push(post);
+  }
+
+  get info() {
+    return `
+${this.name}
+Animals in care: ${this.animals.map(animal => `${animal.name}`).join('\n')}
+Posts (${this.posts.length}): 
+${this.posts.map(post => `- ${post.title}`).join('\n')}
+    `;
   }
 }
 
-module.export = Caretaker;
+module.exports = Caretaker;
