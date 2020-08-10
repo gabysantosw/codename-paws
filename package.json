@@ -1,12 +1,12 @@
 {
   "name": "codename-paws",
-  "version": "0.0.1",
+  "version": "0.0.0",
+  "private": true,
   "description": "Website to make it easier to find local animals to adopt and support organizations / individuals that rescue and take care of them.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "lint-staged",
-    "start": "node src/index.js"
+    "start": "node ./bin/www",
+    "lint": "lint-staged"
   },
   "husky": {
     "hooks": {
@@ -32,7 +32,13 @@
   "homepage": "https://github.com/gabysantosw/codename-paws#readme",
   "dependencies": {
     "cfonts": "^2.8.6",
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
