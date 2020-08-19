@@ -5,7 +5,9 @@
   "description": "Website to make it easier to find local animals to adopt and support organizations / individuals that rescue and take care of them.",
   "scripts": {
     "start": "node ./bin/www",
-    "lint": "lint-staged"
+    "lint": "lint-staged",
+    "dock-b": "docker-compose up --build",
+    "dock": "docker-compose up"
   },
   "husky": {
     "hooks": {
