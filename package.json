@@ -1,0 +1,55 @@
+{
+  "name": "codename-paws",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Website to make it easier to find local animals to adopt and support organizations / individuals that rescue and take care of them.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "lint": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "lint-staged": {
+    "./**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabysantosw/codename-paws.git"
+  },
+  "keywords": [],
+  "author": "Gabriela S. Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gabysantosw/codename-paws/issues"
+  },
+  "homepage": "https://github.com/gabysantosw/codename-paws#readme",
+  "dependencies": {
+    "cfonts": "^2.8.6",
+    "colors": "^1.4.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  }
+}
