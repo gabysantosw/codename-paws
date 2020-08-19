@@ -9,8 +9,9 @@
     "dock-b": "docker-compose up --build",
     "dock": "docker-compose up",
     "test": "nodemon -L --exec jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
-    "test-coverage": " jest --collect-coverage --testEnvironment=node --forceExit --maxWorkers=1",
-    "dock-t": "docker-compose run --rm app npm test"
+    "test-coverage": "nodemon -L --exec jest --collect-coverage --testEnvironment=node --forceExit --maxWorkers=1",
+    "dock-t": "docker-compose run --rm app npm test",
+    "dock-tc": "docker-compose run --rm app npm run test-coverage"
   },
   "husky": {
     "hooks": {
@@ -59,6 +60,7 @@
     "jest": "^26.4.0",
     "lint-staged": "^10.2.11",
     "livereload": "^0.9.1",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "supertest": "^4.0.2"
   }
 }
