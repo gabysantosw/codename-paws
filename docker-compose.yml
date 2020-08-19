@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://mongo/codename-paws
     ports:
       - 3000:3000
       - 35729:35729
