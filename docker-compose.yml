@@ -11,3 +11,9 @@ services:
       - 35729:35729
     volumes:
       - ./src:/app/src
+  mongo:
+    image: mongo
+    logging:
+      driver: none
+    ports:
+      - 27017:27017
