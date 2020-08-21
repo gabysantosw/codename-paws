@@ -6,9 +6,11 @@
 const supertest = require('supertest');
 const app = require('../src/app');
 
-describe('testtttt', () => {
-  test('test', () => {
-    expect(true).toBe(true);
+// routes/index.js
+describe('Index', () => {
+  it('GET request to / should give an OK status', async () => {
+    const response = await supertest(app).get('/');
+    expect(response.statusCode).toBe(200);
   });
 });
 
