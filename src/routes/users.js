@@ -35,21 +35,34 @@ router.get('/', async (req, res) => {
   // res.send(await Caretaker.find(query));
   // await Caretaker.find(query);
   const caretakers = await Caretaker.find(query);
-  res.render('caretakers', { caretakers });
+  // res.render('caretakers', { caretakers });
+  res.send(caretakers);
 });
 
 // GET users by id using query parameters
 router.get('/:userId', async (req, res) => {
   const user = await Caretaker.findById(req.params.userId);
-
-  // check existance of user with given id
-  if (user) {
-    console.log(user.info);
-    res.render('caretaker', { user });
-    // res.json(user);
-  }
+  // early return
   // no user with that id -> 404 error
-  else res.sendStatus(404);
+  if (!user) return res.sendStatus(404);
+
+  console.log(user.info);
+  // res.render('caretaker', { user });
+  return res.json(user);
+});
+
+router.post('/:userId/animals', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // early return
+  // no user with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  const animal = await Animal.create({ name: req.body.name });
+  await user.addAnimal(animal);
+
+  // res.render('caretaker', { user });
+  // res.json(user);
+  return res.send(user);
 });
 
 module.exports = router;
