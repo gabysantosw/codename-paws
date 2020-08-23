@@ -57,11 +57,48 @@ describe('Users endpoints', () => {
     expect(response.body.city).toBe(testUser.city);
   });
 
+  it('GET  request to /users/:userId with a non-existent user should return 404', async () => {
+    const response = await supertest(app).get(`/users/303030303030303030303030`);
+    expect(response.statusCode).toBe(404);
+  });
+
+  it('DELETE request to /users/:userId should remove the user', async () => {
+    const userToDelete = { name: 'Ayyy', city: 'Delete' };
+    const addedUser = (await supertest(app).post('/users').send(userToDelete)).body;
+    const response = await supertest(app).delete(`/users/${addedUser._id}`);
+    expect(response.statusCode).toBe(200);
+  });
+
+  it('DELETE request to /users/:userId with a non-existent user should return 404', async () => {
+    const response = await supertest(app).delete(`/users/303030303030303030303030`);
+    expect(response.statusCode).toBe(404);
+  });
+
   it('POST request to /users/:userId/animals should add an animal', async () => {
     const addedUser = (await supertest(app).post('/users').send(testUser)).body;
     // adding animal to user above
     await supertest(app).post(`/users/${addedUser._id}/animals`).send(testAnimal);
+
     const userWithAnimal = (await supertest(app).get(`/users/${addedUser._id}`)).body;
     expect(userWithAnimal.animals.length === 1).toBe(true);
+  });
+
+  it('POST request to /users/:userId/animals with a non-existent user should return 404', async () => {
+    const response = await supertest(app).post(`/users/303030303030303030303030/animals`);
+    expect(response.statusCode).toBe(404);
+  });
+
+  it('POST request to /users/:userId/posts should add a post', async () => {
+    const addedUser = (await supertest(app).post('/users').send(testUser)).body;
+    // adding post to user above
+    await supertest(app).post(`/users/${addedUser._id}/posts`).send(testPost);
+
+    const userWithPost = (await supertest(app).get(`/users/${addedUser._id}`)).body;
+    expect(userWithPost.posts.length === 1).toBe(true);
+  });
+
+  it('POST request to /users/:userId/post with a non-existent user should return 404', async () => {
+    const response = await supertest(app).post(`/users/303030303030303030303030/posts`);
+    expect(response.statusCode).toBe(404);
   });
 });
