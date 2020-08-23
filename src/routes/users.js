@@ -9,13 +9,13 @@ const Post = require('../models/post');
 router.get('/init', async (req, res) => {
   const laia = await Caretaker.create({ name: 'Laiaaa', city: 'Barcelona' });
 
-  await laia.addAnimal(await Animal.create({ name: 'Ellie' }));
+  await laia.addAnimal(await Animal.create({ name: 'Ellie', city: 'Barcelona' }));
   await laia.addPost(await Post.create({ title: 'Very smol' }));
 
   const gaby = await Caretaker.create({ name: 'Gaby', city: 'Madrid' });
 
-  await gaby.addAnimal(await Animal.create({ name: 'Luke' }));
-  await gaby.addAnimal(await Animal.create({ name: 'Brownie' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Luke', city: 'Madrid' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Brownie', city: 'Madrid' }));
   await gaby.addPost(await Post.create({ title: 'Awwww' }));
   await gaby.addPost(await Post.create({ title: 'Update!' }));
 
