@@ -68,4 +68,28 @@ router.post('/:userId/animals', async (req, res) => {
   return res.send(animal);
 });
 
+// <--===---===-->
+// <--===---===--> POST <--===---===--> //
+// <--===---===-->
+
+// GET all posts from the same caretaker
+router.get('/:userId/posts', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  return res.send(user.posts);
+});
+
+// POST new post in a given caretaker
+router.post('/:userId/posts', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  const post = await Post.create({ title: req.body.title });
+  await user.addPost(post);
+
+  return res.send(post);
+});
 module.exports = router;
