@@ -9,15 +9,15 @@ const Post = require('../models/post');
 router.get('/init', async (req, res) => {
   const laia = await Caretaker.create({ name: 'Laiaaa', city: 'Barcelona' });
 
-  laia.addAnimal(await Animal.create({ name: 'Ellie' }));
-  laia.addPost(await Post.create({ title: 'Very smol' }));
+  await laia.addAnimal(await Animal.create({ name: 'Ellie' }));
+  await laia.addPost(await Post.create({ title: 'Very smol' }));
 
   const gaby = await Caretaker.create({ name: 'Gaby', city: 'Madrid' });
 
-  gaby.addAnimal(await Animal.create({ name: 'Luke' }));
-  gaby.addAnimal(await Animal.create({ name: 'Brownie' }));
-  gaby.addPost(await Post.create({ title: 'Awwww' }));
-  gaby.addPost(await Post.create({ title: 'Update' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Luke' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Brownie' }));
+  await gaby.addPost(await Post.create({ title: 'Awwww' }));
+  await gaby.addPost(await Post.create({ title: 'Update!' }));
 
   res.sendStatus(200);
 });
