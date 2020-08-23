@@ -22,6 +22,10 @@ router.get('/init', async (req, res) => {
   res.sendStatus(200);
 });
 
+// <--===---===-->
+// <--===---===--> CARETAKER <--===---===--> //
+// <--===---===-->
+
 // GET all users & handle queries by name / city
 router.get('/', async (req, res) => {
   const query = {};
@@ -45,7 +49,7 @@ router.post('/', async (req, res) => {
   res.send(newUser);
 });
 
-// GET users by id using query parameters
+// GET users by id
 router.get('/:userId', async (req, res) => {
   const user = await Caretaker.findById(req.params.userId);
   // no user was found with that id -> 404 error
@@ -53,7 +57,36 @@ router.get('/:userId', async (req, res) => {
 
   // console.log(user.info);
   // res.render('caretaker', { user });
-  return res.json(user);
+  return res.send(user);
+});
+
+// DELETE users by id
+router.delete('/:userId', async (req, res) => {
+  const user = await Caretaker.findOneAndRemove({ _id: req.params.userId });
+  // .findOneAndRemove returns the deleted user
+  // so if there's none, no user with that Id was found -> 404
+  if (!user) return res.sendStatus(404);
+
+  return res.sendStatus(200);
+});
+
+// POST new caretaker to database
+router.post('/', async (req, res) => {
+  const newUser = await Caretaker.create(req.body);
+  res.send(newUser);
+});
+
+// <--===---===-->
+// <--===---===--> ANIMAL <--===---===--> //
+// <--===---===-->
+
+// GET all animals from the same caretaker
+router.get('/:userId/animals', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  return res.send(user.animals);
 });
 
 // POST new animal to a given caretaker
@@ -92,4 +125,5 @@ router.post('/:userId/posts', async (req, res) => {
 
   return res.send(post);
 });
+
 module.exports = router;
