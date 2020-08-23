@@ -95,7 +95,11 @@ router.post('/:userId/animals', async (req, res) => {
   // no user was found with that id -> 404 error
   if (!user) return res.sendStatus(404);
 
-  const animal = await Animal.create({ name: req.body.name });
+  // if no city is given, default to the one in the user
+  let { city } = req.body;
+  if (!city) city = user.city;
+
+  const animal = await Animal.create({ name: req.body.name, city });
   await user.addAnimal(animal);
 
   return res.send(animal);
