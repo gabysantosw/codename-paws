@@ -10,4 +10,5 @@ RUN npm install
 
 ADD bin ./bin
 
-CMD ["nodemon"]
+# --legacy-watch needed for auto-reload on windows
+CMD ["nodemon", "--legacy-watch"]
