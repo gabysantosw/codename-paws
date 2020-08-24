@@ -1,5 +1,36 @@
+const mongoose = require('mongoose');
+const autopopulate = require('mongoose-autopopulate');
+
 const Cfonts = require('cfonts');
 require('colors');
+
+const caretakerSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+
+  city: {
+    type: String,
+    required: true,
+  },
+
+  animals: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Animal',
+      autopopulate: true,
+    },
+  ],
+
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Post',
+      autopopulate: true,
+    },
+  ],
+});
 
 /**
  * Class to represent a caretaker
@@ -12,10 +43,11 @@ class Caretaker {
    * @param {string} email
    * @param {string} city
    */
+  /*
   constructor(name, email = '', city = '') {
     this.name = name;
-    this.email = email;
     this.city = city;
+    this.email = email;
 
     this.creationDate = new Date();
     this.photo = '';
@@ -28,21 +60,24 @@ class Caretaker {
     this.animals = [];
     this.posts = [];
   }
+  */
 
   /**
    * Add a new animal to animals list
    * @param {Object} animal
    */
-  addAnimal(animal) {
+  async addAnimal(animal) {
     this.animals.push(animal);
+    await this.save();
   }
 
   /**
    * Add new post to posts list
    * @param {Object} post
    */
-  addPost(post) {
+  async addPost(post) {
     this.posts.push(post);
+    await this.save();
   }
 
   get info() {
@@ -61,4 +96,7 @@ ${this.posts.map(post => `${'- '.bold.cyan}${post.title}`).join('\n')}
   }
 }
 
-module.exports = Caretaker;
+caretakerSchema.loadClass(Caretaker);
+caretakerSchema.plugin(autopopulate);
+
+module.exports = mongoose.model('Caretaker', caretakerSchema);

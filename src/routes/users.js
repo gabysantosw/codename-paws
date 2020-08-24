@@ -6,42 +6,128 @@ const Caretaker = require('../models/caretaker');
 const Animal = require('../models/animal');
 const Post = require('../models/post');
 
-const laia = new Caretaker('Laia');
-laia.addAnimal(new Animal('Ellie'));
-laia.addPost(new Post('Smol beans'));
+router.get('/init', async (req, res) => {
+  const laia = await Caretaker.create({ name: 'Laiaaa', city: 'Barcelona' });
 
-const gaby = new Caretaker('Gaby');
-gaby.addAnimal(new Animal('Luke'));
-gaby.addAnimal(new Animal('Brownie'));
-gaby.addPost(new Post('Awwww'));
-gaby.addPost(new Post('Update'));
-gaby.addPost(new Post('Look at this!'));
+  await laia.addAnimal(await Animal.create({ name: 'Ellie', city: 'Barcelona' }));
+  await laia.addPost(await Post.create({ title: 'Very smol' }));
 
-const users = [laia, gaby];
+  const gaby = await Caretaker.create({ name: 'Gaby', city: 'Madrid' });
 
-// GET all users & handle queries by name
-router.get('/', (req, res) => {
-  // check for a name query
-  if (req.query.name) {
-    return res.send(users.filter(user => user.name.toLowerCase() === req.query.name.toLowerCase()));
-  }
+  await gaby.addAnimal(await Animal.create({ name: 'Luke', city: 'Madrid' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Brownie', city: 'Madrid' }));
+  await gaby.addPost(await Post.create({ title: 'Awwww' }));
+  await gaby.addPost(await Post.create({ title: 'Update!' }));
 
-  // show all users since there's no query
-  return res.send(users);
+  res.sendStatus(200);
 });
 
-// GET users by id using query parameters
-router.get('/:userId', (req, res) => {
-  const user = users[req.params.userId];
+// <--===---===-->
+// <--===---===--> CARETAKER <--===---===--> //
+// <--===---===-->
 
-  // check existance of user with given id
-  if (user) {
-    console.log(user.info);
-    res.render('caretaker', { user });
-    // res.json(user);
+// GET all users & handle queries by name / city
+router.get('/', async (req, res) => {
+  const query = {};
+
+  // check query parameters by name or city
+  if (req.query.name) {
+    query.name = req.query.name;
   }
-  // no user with that id -> 404 error
-  else res.sendStatus(404);
+  if (req.query.city) {
+    query.city = req.query.city;
+  }
+
+  const queryList = await Caretaker.find(query);
+  // res.render('caretakers', { caretakers });
+  res.send(queryList);
+});
+
+// POST new caretaker to database
+router.post('/', async (req, res) => {
+  const newUser = await Caretaker.create(req.body);
+  res.send(newUser);
+});
+
+// GET users by id
+router.get('/:userId', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  // console.log(user.info);
+  // res.render('caretaker', { user });
+  return res.send(user);
+});
+
+// DELETE users by id
+router.delete('/:userId', async (req, res) => {
+  const user = await Caretaker.findOneAndRemove({ _id: req.params.userId });
+  // .findOneAndRemove returns the deleted user
+  // so if there's none, no user with that Id was found -> 404
+  if (!user) return res.sendStatus(404);
+
+  return res.sendStatus(200);
+});
+
+// POST new caretaker to database
+router.post('/', async (req, res) => {
+  const newUser = await Caretaker.create(req.body);
+  res.send(newUser);
+});
+
+// <--===---===-->
+// <--===---===--> ANIMAL <--===---===--> //
+// <--===---===-->
+
+// GET all animals from the same caretaker
+router.get('/:userId/animals', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  return res.send(user.animals);
+});
+
+// POST new animal to a given caretaker
+router.post('/:userId/animals', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  // if no city is given, default to the one in the user
+  let { city } = req.body;
+  if (!city) city = user.city;
+
+  const animal = await Animal.create({ name: req.body.name, city });
+  await user.addAnimal(animal);
+
+  return res.send(animal);
+});
+
+// <--===---===-->
+// <--===---===--> POST <--===---===--> //
+// <--===---===-->
+
+// GET all posts from the same caretaker
+router.get('/:userId/posts', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  return res.send(user.posts);
+});
+
+// POST new post in a given caretaker
+router.post('/:userId/posts', async (req, res) => {
+  const user = await Caretaker.findById(req.params.userId);
+  // no user was found with that id -> 404 error
+  if (!user) return res.sendStatus(404);
+
+  const post = await Post.create({ title: req.body.title });
+  await user.addPost(post);
+
+  return res.send(post);
 });
 
 module.exports = router;
