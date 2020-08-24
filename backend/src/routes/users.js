@@ -70,12 +70,6 @@ router.delete('/:userId', async (req, res) => {
   return res.sendStatus(200);
 });
 
-// POST new caretaker to database
-router.post('/', async (req, res) => {
-  const newUser = await Caretaker.create(req.body);
-  res.send(newUser);
-});
-
 // <--===---===-->
 // <--===---===--> ANIMAL <--===---===--> //
 // <--===---===-->
