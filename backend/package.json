@@ -10,8 +10,8 @@
     "dock": "docker-compose up",
     "test": "nodemon -L --exec jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
     "test-coverage": "nodemon -L --exec jest --collect-coverage --testEnvironment=node --forceExit --maxWorkers=1",
-    "dock-t": "docker-compose run --rm app npm test",
-    "dock-tc": "docker-compose run --rm app npm run test-coverage"
+    "dock-t": "docker-compose run --rm backend npm test",
+    "dock-tc": "docker-compose run --rm app backend run test-coverage"
   },
   "husky": {
     "hooks": {
