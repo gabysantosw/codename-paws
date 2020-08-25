@@ -6,16 +6,11 @@ const router = express.Router();
 const Animal = require('../models/animal');
 // const Post = require('../models/post');
 
-// /animals?caretaker=gaby
-// /animals
-// /animals/:animalId
-
 // <--===---===-->
 // <--===---===--> ANIMAL <--===---===--> //
 // <--===---===-->
 
 // GET all animals & handle queries by city / type
-// GET all animals & handle queries by city
 router.get('/', async (req, res) => {
   const query = {};
 
@@ -29,5 +24,18 @@ router.get('/', async (req, res) => {
   const queryList = await Animal.find(query);
   res.send(queryList);
 });
+
+// DELETE animals by ID
+router.delete('/:userId', async (req, res) => {
+  const user = await Animal.findOneAndRemove({ _id: req.params.userId });
+  // .findOneAndRemove returns the deleted user
+  // so if there's none, no animal with that Id was found -> 404
+  if (!user) return res.sendStatus(404);
+
+  // removed successfully
+  return res.sendStatus(200);
+});
+
+// PUT / update animal by ID
 
 module.exports = router;
