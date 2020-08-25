@@ -14,12 +14,16 @@ const Animal = require('../models/animal');
 // <--===---===--> ANIMAL <--===---===--> //
 // <--===---===-->
 
+// GET all animals & handle queries by city / type
 // GET all animals & handle queries by city
 router.get('/', async (req, res) => {
   const query = {};
 
   if (req.query.city) {
     query.city = req.query.city;
+  }
+  if (req.query.type) {
+    query.type = req.query.type;
   }
 
   const queryList = await Animal.find(query);
