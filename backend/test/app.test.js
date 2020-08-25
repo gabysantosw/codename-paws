@@ -17,7 +17,7 @@ describe('Index', () => {
 // routes/users.js
 describe('Users endpoints', () => {
   const testUser = { name: 'Coyote', city: 'Pawnee' };
-  const testAnimal = { name: 'Lil' };
+  const testAnimal = { name: 'Lil', type: 'Dog' };
   const testPost = { title: 'Hiii' };
 
   it('POST request to /users should create a user', async () => {
@@ -81,6 +81,15 @@ describe('Users endpoints', () => {
     await supertest(app).post(`/api/users/${user._id}/animals`).send(testAnimal);
     const response = await supertest(app).get(`/api/users/${user._id}/animals`);
     expect(response.body.length).toBe(1);
+  });
+
+  it('POST  request to /users/:userId/animals with an specific city, should match the given city', async () => {
+    const testAnimalWithCity = { name: 'Choco', city: 'Caracas', type: 'Dog' };
+
+    const user = (await supertest(app).post('/api/users').send(testUser)).body;
+    await supertest(app).post(`/api/users/${user._id}/animals`).send(testAnimalWithCity);
+    const response = await supertest(app).get(`/api/users/${user._id}/animals`);
+    expect(response.body[0].city).toBe(testAnimalWithCity.city);
   });
 
   it('GET  request to /users/:userId/animals with a non-existent user should return 404', async () => {
