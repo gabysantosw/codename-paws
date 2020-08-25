@@ -9,13 +9,13 @@ const Post = require('../models/post');
 router.get('/init', async (req, res) => {
   const laia = await Caretaker.create({ name: 'Laiaaa', city: 'Barcelona' });
 
-  await laia.addAnimal(await Animal.create({ name: 'Ellie', city: 'Barcelona' }));
+  await laia.addAnimal(await Animal.create({ name: 'Ellie', city: 'Barcelona', type: 'Dog' }));
   await laia.addPost(await Post.create({ title: 'Very smol' }));
 
   const gaby = await Caretaker.create({ name: 'Gaby', city: 'Madrid' });
 
-  await gaby.addAnimal(await Animal.create({ name: 'Luke', city: 'Madrid' }));
-  await gaby.addAnimal(await Animal.create({ name: 'Brownie', city: 'Madrid' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Luke', city: 'Madrid', type: 'Dog' }));
+  await gaby.addAnimal(await Animal.create({ name: 'Brownie', city: 'Madrid', type: 'Cat' }));
   await gaby.addPost(await Post.create({ title: 'Awwww' }));
   await gaby.addPost(await Post.create({ title: 'Update!' }));
 
@@ -67,8 +67,11 @@ router.delete('/:userId', async (req, res) => {
   // so if there's none, no user with that Id was found -> 404
   if (!user) return res.sendStatus(404);
 
+  // removed successfully
   return res.sendStatus(200);
 });
+
+// PUT / update user by ID
 
 // <--===---===-->
 // <--===---===--> ANIMAL <--===---===--> //
@@ -93,7 +96,7 @@ router.post('/:userId/animals', async (req, res) => {
   let { city } = req.body;
   if (!city) city = user.city;
 
-  const animal = await Animal.create({ name: req.body.name, city });
+  const animal = await Animal.create({ name: req.body.name, city, type: req.body.type });
   await user.addAnimal(animal);
 
   return res.send(animal);
