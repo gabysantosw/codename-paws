@@ -26,8 +26,8 @@ router.get('/', async (req, res) => {
 });
 
 // DELETE animals by ID
-router.delete('/:userId', async (req, res) => {
-  const user = await Animal.findOneAndRemove({ _id: req.params.userId });
+router.delete('/:animalId', async (req, res) => {
+  const user = await Animal.findOneAndRemove({ _id: req.params.animalId });
   // .findOneAndRemove returns the deleted user
   // so if there's none, no animal with that Id was found -> 404
   if (!user) return res.sendStatus(404);
