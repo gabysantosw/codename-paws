@@ -14,17 +14,13 @@ const Post = require('../models/post');
 router.get('/', async (req, res) => {
   const query = {};
 
-  if (req.query.city) {
-    query.city = req.query.city;
-  }
-
   const queryList = await Post.find(query);
   res.send(queryList);
 });
 
 // DELETE post by ID
-router.delete('/:userId', async (req, res) => {
-  const user = await Post.findOneAndRemove({ _id: req.params.userId });
+router.delete('/:postId', async (req, res) => {
+  const user = await Post.findOneAndRemove({ _id: req.params.postId });
   // .findOneAndRemove returns the deleted post
   // so if there's none, no post with that Id was found -> 404
   if (!user) return res.sendStatus(404);
