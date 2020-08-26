@@ -25,4 +25,10 @@ describe('Animals endpoints', () => {
     const response = await supertest(app).get(`/api/animals?city=${animal.city}`);
     expect(response.body.length > 0).toBe(true);
   });
+  it('GET  request to /animals with a type query should list at least one animal', async () => {
+    const user = (await supertest(app).post('/api/users').send(testUser)).body;
+    const animal = (await supertest(app).post(`/api/users/${user._id}/animals`).send(testAnimal)).body;
+    const response = await supertest(app).get(`/api/animals?type=${animal.type}`);
+    expect(response.body.length > 0).toBe(true);
+  });
 });
