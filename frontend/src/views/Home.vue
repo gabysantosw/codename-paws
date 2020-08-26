@@ -1,21 +1,19 @@
 <template lang="pug">
   .home
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    ul 
-      li(v-for='user in users') {{ user.name }}
-        ul
-          li(v-for='animal in user.animals') {{animal.name}} {{animal.city}} {{animal.type}}
+    h1 All shelters, associations or individuals
+    ul(v-if='users.length > 0')
+      ShelterCard(v-for='user in users' :user='user')
+    p(v-else) No shelters
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/hello-world.vue';
+import ShelterCard from '@/components/shelter-card.vue';
 import axios from 'axios';
 
 export default {
   name: 'Home',
-  components: { HelloWorld },
+  components: { ShelterCard },
   data() {
     return {
       users: []
@@ -24,7 +22,6 @@ export default {
   async created() {
     const request = await axios.get('/api/users');
     this.users = request.data;
-    console.log(this.users);
   }
 };
 </script>
