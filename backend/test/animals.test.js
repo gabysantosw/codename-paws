@@ -25,10 +25,25 @@ describe('Animals endpoints', () => {
     const response = await supertest(app).get(`/api/animals?city=${animal.city}`);
     expect(response.body.length > 0).toBe(true);
   });
+
   it('GET  request to /animals with a type query should list at least one animal', async () => {
     const user = (await supertest(app).post('/api/users').send(testUser)).body;
     const animal = (await supertest(app).post(`/api/users/${user._id}/animals`).send(testAnimal)).body;
     const response = await supertest(app).get(`/api/animals?type=${animal.type}`);
     expect(response.body.length > 0).toBe(true);
+  });
+
+  it('DELETE request to /animals/:animalId should remove the animal', async () => {
+    const addedUser = (await supertest(app).post('/api/users').send(testUser)).body;
+    // adding animal to user above
+    const animalToDelete = (await supertest(app).post(`/api/users/${addedUser._id}/animals`).send(testAnimal)).body;
+
+    await supertest(app).delete(`/api/animals/${animalToDelete._id}`);
+    expect(addedUser.animals.length).toBe(0);
+  });
+
+  it('DELETE request to /users/:animalId with a non-existent user should return 404', async () => {
+    const response = await supertest(app).delete(`/api/animals/303030303030303030303030`);
+    expect(response.statusCode).toBe(404);
   });
 });
