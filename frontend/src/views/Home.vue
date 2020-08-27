@@ -9,7 +9,7 @@
 <script>
 // @ is an alias to /src
 import ShelterCard from '@/components/shelter-card.vue';
-import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -20,8 +20,10 @@ export default {
     };
   },
   async created() {
-    const request = await axios.get('/api/users');
-    this.users = request.data;
+    this.users = await this.fetchUsers();
+  },
+  methods: {
+    ...mapActions(['fetchUsers'])
   }
 };
 </script>

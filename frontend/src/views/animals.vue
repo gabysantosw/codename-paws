@@ -8,7 +8,7 @@
 
 <script>
 import AnimalCard from '@/components/animal-card.vue';
-import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Home',
@@ -19,8 +19,10 @@ export default {
     };
   },
   async created() {
-    const request = await axios.get('/api/animals');
-    this.animals = request.data;
+    this.animals = await this.fetchAnimals();
+  },
+  methods: {
+    ...mapActions(['fetchAnimals'])
   }
 };
 </script>
