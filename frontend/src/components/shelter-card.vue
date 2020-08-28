@@ -10,7 +10,8 @@ export default {
 
 <template lang="pug">
   li 
-    h2 {{ user.name }}
+    h2 
+      router-link(:to='`/users/${user._id}`') {{ user.name }}
     p Location: {{ user.city }}. 
     h3(v-if='user.animals.length > 0') Animals in care ({{ user.animals.length }})
     ul(v-if='user.animals.length > 0')
