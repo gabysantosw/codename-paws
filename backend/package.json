@@ -58,6 +58,7 @@
     "jest": "^26.4.2",
     "lint-staged": "^10.2.11",
     "livereload": "^0.9.1",
+    "mongodb-memory-server": "^6.6.6",
     "prettier": "^2.1.0",
     "supertest": "^4.0.2"
   }
