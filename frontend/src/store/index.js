@@ -12,8 +12,16 @@ export default new Vuex.Store({
       const request = await axios.get('/api/users');
       return request.data;
     },
+    async fetchUserById(store, userId) {
+      const request = await axios.get(`/api/users/${userId}`);
+      return request.data;
+    },
     async fetchAnimals() {
       const request = await axios.get('/api/animals');
+      return request.data;
+    },
+    async fetchAnimalById(store, animalId) {
+      const request = await axios.get(`/api/animals/${animalId}`);
       return request.data;
     }
   },
