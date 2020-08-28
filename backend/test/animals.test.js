@@ -33,6 +33,20 @@ describe('Animals endpoints', () => {
     expect(response.body.length > 0).toBe(true);
   });
 
+  it('GET  request to /animals/:animalId should return an animal', async () => {
+    const user = (await supertest(app).post('/api/users').send(testUser)).body;
+    const animal = (await supertest(app).post(`/api/users/${user._id}/animals`).send(testAnimal)).body;
+    const response = await supertest(app).get(`/api/animals/${animal._id}`);
+
+    expect(response.body.name).toBe(testAnimal.name);
+    expect(response.body.type).toBe(testAnimal.type);
+  });
+
+  it('GET  request to /animals/:animalId with a non-existent animal should return 404', async () => {
+    const response = await supertest(app).get(`/api/animals/303030303030303030303030`);
+    expect(response.statusCode).toBe(404);
+  });
+
   it('DELETE request to /animals/:animalId should remove the animal', async () => {
     const addedUser = (await supertest(app).post('/api/users').send(testUser)).body;
     // adding animal to user above
