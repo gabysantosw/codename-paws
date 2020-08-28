@@ -1,5 +1,7 @@
 <template lang="pug">
-  li {{ animal.name }}, location: {{ animal.city }}
+  li 
+    router-link(:to='`/animals/${animal._id}`') {{ animal.name }}
+    span , location: {{ animal.city }}
 </template>
 
 <script>
