@@ -25,6 +25,15 @@ router.get('/', async (req, res) => {
   res.send(queryList);
 });
 
+// GET animal by id
+router.get('/:animalId', async (req, res) => {
+  const animal = await Animal.findById(req.params.animalId);
+  // no animal was found with that id
+  if (!animal) return res.sendStatus(404);
+
+  return res.send(animal);
+});
+
 // DELETE animals by ID
 router.delete('/:animalId', async (req, res) => {
   const user = await Animal.findOneAndRemove({ _id: req.params.animalId });
