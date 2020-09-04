@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
 
 require('./database-connection');
 
@@ -13,6 +14,13 @@ const postsRouter = require('./routes/posts');
 
 const app = express();
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
+
 if (app.get('env') == 'development') {
   /* eslint-disable-next-line */
   app.use(require('connect-livereload')());
@@ -21,6 +29,8 @@ if (app.get('env') == 'development') {
     .createServer({ extraExts: ['pug'], usePolling: true })
     .watch([`${__dirname}/public`, `${__dirname}/views`]);
 }
+
+app.set('trust proxy', 1);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
