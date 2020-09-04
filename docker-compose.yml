@@ -4,7 +4,7 @@ services:
     image: frontend
     build:
       context: frontend
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     ports:
       # because load-balancer:
       - 8080
@@ -20,7 +20,7 @@ services:
     image: backend
     build:
       context: backend
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     environment:
       - MONGODB_CONNECTION_STRING=mongodb://mongo/codename-paws
     labels:
