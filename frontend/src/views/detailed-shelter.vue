@@ -11,10 +11,10 @@ export default {
     };
   },
   async mounted() {
-    this.user = await this.fetchUserById(this.$route.params.id);
+    this.user = await this.fetchShelterById(this.$route.params.id);
   },
   methods: {
-    ...mapActions(['fetchUserById'])
+    ...mapActions(['fetchShelterById'])
   }
 };
 </script>

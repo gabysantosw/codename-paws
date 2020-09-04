@@ -11,10 +11,10 @@ export default {
     };
   },
   async created() {
-    this.users = await this.fetchUsers();
+    this.users = await this.fetchShelters();
   },
   methods: {
-    ...mapActions(['fetchUsers'])
+    ...mapActions(['fetchShelters'])
   }
 };
 </script>

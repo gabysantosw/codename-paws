@@ -17,7 +17,7 @@ skinparam roundCorner 16
 skinparam Shadowing false
 skinparam Padding 2
 
-class Caretaker {
+class Shelter {
   name: String
   city: String
   email: String
@@ -59,8 +59,8 @@ class Post {
 }
 
 
-Caretaker "1" o--> "0..*" Animal : cares for
-Caretaker "1" o--> "0..*" Post : created
+Shelter "1" o--> "0..*" Animal : cares for
+Shelter "1" o--> "0..*" Post : created
 Animal "1" o---> "0..*" Post : appears on
 Post "1" o--> "0..*" Animal : includes
 @enduml

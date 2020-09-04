@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const autopopulate = require('mongoose-autopopulate');
 
-const caretakerSchema = new mongoose.Schema({
+const shelterSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -30,10 +30,10 @@ const caretakerSchema = new mongoose.Schema({
 });
 
 /**
- * Class to represent a caretaker
- * @class Caretaker
+ * Class to represent a Shelter
+ * @class Shelter
  */
-class Caretaker {
+class Shelter {
   /**
    * Add a new animal to animals list
    * @param {Object} animal
@@ -53,7 +53,7 @@ class Caretaker {
   }
 }
 
-caretakerSchema.loadClass(Caretaker);
-caretakerSchema.plugin(autopopulate);
+shelterSchema.loadClass(Shelter);
+shelterSchema.plugin(autopopulate);
 
-module.exports = mongoose.model('Caretaker', caretakerSchema);
+module.exports = mongoose.model('Shelter', shelterSchema);

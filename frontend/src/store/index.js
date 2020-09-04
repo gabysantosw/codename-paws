@@ -11,12 +11,12 @@ export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {
-    async fetchUsers() {
-      const request = await axios.get('/api/users');
+    async fetchShelters() {
+      const request = await axios.get('/api/shelters');
       return request.data;
     },
-    async fetchUserById(store, userId) {
-      const request = await axios.get(`/api/users/${userId}`);
+    async fetchShelterById(store, shelterId) {
+      const request = await axios.get(`/api/shelters/${shelterId}`);
       return request.data;
     },
     async fetchAnimals() {

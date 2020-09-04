@@ -17,7 +17,7 @@ skinparam roundCorner 16
 skinparam Shadowing true
 skinparam Padding 2
 
-actor "Shelter" as user 
+actor "Shelter" as Shelter 
 package Content_actions {
   usecase "Add animal" as addAnimal
   usecase "Add post" as addPost
@@ -29,9 +29,9 @@ package App_Content {
   usecase "Posts" as posts
 }
 
-user --> addAnimal
+Shelter --> addAnimal
 Content_actions --> App_Content
-user --> addPost
+Shelter --> addPost
 visitor --> animals
 visitor --> posts
 @enduml 
