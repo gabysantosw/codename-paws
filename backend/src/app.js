@@ -12,6 +12,7 @@ const MongoStore = require('connect-mongo')(session);
 const mongooseConnection = require('./database-connection');
 
 const indexRouter = require('./routes/index');
+const accountRouter = require('./routes/account');
 const sheltersRouter = require('./routes/shelters');
 const animalsRouter = require('./routes/animals');
 const postsRouter = require('./routes/posts');
@@ -64,6 +65,7 @@ passport.deserializeUser(Account.deserializeUser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/', indexRouter);
+app.use('/api/account', accountRouter);
 app.use('/api/shelters', sheltersRouter);
 app.use('/api/animals', animalsRouter);
 app.use('/api/posts', postsRouter);
