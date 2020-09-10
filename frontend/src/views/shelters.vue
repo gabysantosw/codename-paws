@@ -7,11 +7,11 @@ export default {
   components: { ShelterCard },
   data() {
     return {
-      users: []
+      shelters: []
     };
   },
   async created() {
-    this.users = await this.fetchShelters();
+    this.shelters = await this.fetchShelters();
   },
   methods: {
     ...mapActions(['fetchShelters'])
@@ -21,8 +21,8 @@ export default {
 
 <template lang="pug">
   .home
-    h1 All shelters, associations or individuals
-    ul(v-if='users.length > 0')
-      ShelterCard(v-for='user in users' :user='user')
+    h1 Shelters
+    ul(v-if='shelters.length > 0')
+      ShelterCard(v-for='shelter in shelters' :shelter='shelter')
     p(v-else) No shelters
 </template>

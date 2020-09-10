@@ -3,7 +3,7 @@ import ShelterAnimal from '@/components/shelter-animal.vue';
 
 export default {
   name: 'ShelterCard',
-  props: ['user'],
+  props: ['shelter'],
   components: { ShelterAnimal }
 };
 </script>
@@ -11,11 +11,11 @@ export default {
 <template lang="pug">
   li 
     h2 
-      router-link(:to='`/users/${user._id}`') {{ user.name }}
-    p Location: {{ user.city }}. 
-    h3(v-if='user.animals.length > 0') Animals in care ({{ user.animals.length }})
-    ul(v-if='user.animals.length > 0')
-      ShelterAnimal(v-for='animal in user.animals' :animal='animal')
+      router-link(:to='`/shelters/${shelter._id}`') {{ shelter.name }}
+    p Location: {{ shelter.city }}. 
+    h3(v-if='shelter.animals.length > 0') Animals in care ({{ shelter.animals.length }})
+    ul(v-if='shelter.animals.length > 0')
+      ShelterAnimal(v-for='animal in shelter.animals' :animal='animal')
 </template>
 
 <style lang="scss"></style>
