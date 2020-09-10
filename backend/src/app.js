@@ -4,8 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
+const passport = require('passport');
 
-require('./database-connection');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const mongooseConnection = require('./database-connection');
 
 const indexRouter = require('./routes/index');
 const sheltersRouter = require('./routes/shelters');
@@ -36,6 +40,27 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(
+  session({
+    secret: ['superdupersecuresecret', 'notasuperdupersecuresecret'],
+    store: new MongoStore({ mongooseConnection, stringify: false }),
+    cookie: {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      path: '/api',
+    },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const Account = require('./models/shelter');
+
+passport.use(Account.createStrategy());
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/', indexRouter);

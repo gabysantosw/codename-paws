@@ -11,3 +11,5 @@ mongoose
   })
   .then(() => console.log('Connected to Database'))
   .catch(console.log);
+
+module.exports = mongoose.connection;
