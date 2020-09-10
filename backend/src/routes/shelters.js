@@ -7,12 +7,16 @@ const Animal = require('../models/animal');
 const Post = require('../models/post');
 
 router.get('/init', async (req, res) => {
-  const laia = await Shelter.create({ name: 'Laiaaa', city: 'Barcelona' });
+  const laia = new Shelter({ email: 'papaya@asdf.com', name: 'Laia', city: 'Barcelona' });
+  await laia.setPassword('test');
+  await laia.save();
 
   await laia.addAnimal(await Animal.create({ name: 'Ellie', city: 'Barcelona', type: 'Dog' }));
   await laia.addPost(await Post.create({ title: 'Very smol' }));
 
-  const gaby = await Shelter.create({ name: 'Gaby', city: 'Madrid' });
+  const gaby = new Shelter({ email: 'ciruela@asdf.com', name: 'Gaby', city: 'Madrid' });
+  await gaby.setPassword('test');
+  await gaby.save();
 
   await gaby.addAnimal(await Animal.create({ name: 'Luke', city: 'Madrid', type: 'Dog' }));
   await gaby.addAnimal(await Animal.create({ name: 'Brownie', city: 'Madrid', type: 'Cat' }));
