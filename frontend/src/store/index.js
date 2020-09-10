@@ -23,6 +23,10 @@ export default new Vuex.Store({
       const request = await axios.get('/api/animals');
       return request.data;
     },
+    async fetchAnimalsBy(store, query) {
+      const request = await axios.get(`/api/animals`, { params: query });
+      return request.data;
+    },
     async fetchAnimalById(store, animalId) {
       const request = await axios.get(`/api/animals/${animalId}`);
       return request.data;
