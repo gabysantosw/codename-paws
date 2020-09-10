@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const autopopulate = require('mongoose-autopopulate');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const shelterSchema = new mongoose.Schema({
   name: {
@@ -55,5 +56,11 @@ class Shelter {
 
 shelterSchema.loadClass(Shelter);
 shelterSchema.plugin(autopopulate);
+
+// this plugin adds the username, password and other fields to our schema
+shelterSchema.plugin(passportLocalMongoose, {
+  // to login with an unique email instead of username
+  usernameField: 'email',
+});
 
 module.exports = mongoose.model('Shelter', shelterSchema);
