@@ -1,14 +1,19 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Shelters from '../views/shelters.vue';
+import Home from '../views/home.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/shelters',
     name: 'Shelters',
-    component: Shelters
+    component: () => import(/* webpackChunkName: "about" */ '../views/shelters.vue')
   },
   {
     path: '/animals',
@@ -19,7 +24,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/animals.vue')
   },
   {
-    path: '/users/:id',
+    path: '/shelters/:id',
     name: 'DetailedShelter',
     component: () => import(/* webpackChunkName: "about" */ '../views/detailed-shelter.vue')
   },
