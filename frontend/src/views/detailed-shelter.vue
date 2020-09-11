@@ -1,10 +1,12 @@
 <script>
 import AnimalCard from '@/components/animal-card.vue';
+import PostCard from '@/components/post-card.vue';
+
 import { mapActions } from 'vuex';
 
 export default {
   name: 'DetailedShelter',
-  components: { AnimalCard },
+  components: { AnimalCard, PostCard },
   data() {
     return {
       shelter: null
@@ -27,8 +29,8 @@ export default {
     ul(v-if='shelter.animals.length > 0')
       AnimalCard(v-for='animal in shelter.animals' :animal='animal')
     h3 Latest Updates
-    ul(v-if='user.posts.length > 0')
-      li(v-for='post in user.posts') {{ post. title }}
+    ul(v-if='shelter.posts.length > 0')
+      PostCard(v-for='post in shelter.posts' :post='post')
 </template>
 
 <style lang="scss"></style>
