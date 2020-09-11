@@ -1,25 +1,9 @@
-<template lang="pug">
-  section
-    h1 Animals looking to be adopted
-    section
-      label(for='city-select') Cities:
-      select(name='city' id='city-select' v-model='selectedCity' @change='filterAnimals()')
-        option(v-for='city in cityList' :value='city') {{ city }}
-      p Type:
-      template(v-for='type in typeList')
-        input(type='radio' :id='type' name='type' :value='type' v-model='selectedType' @change='filterAnimals()')
-        label(:for='type') {{ type }}
-    ul(v-if='animals.length > 0')
-      AnimalCard(v-for='animal in animals' :animal='animal')
-    p(v-else) No animals
-</template>
-
 <script>
 import AnimalCard from '@/components/animal-card.vue';
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'Home',
+  name: 'Animals',
   components: { AnimalCard },
   data() {
     return {
@@ -67,3 +51,19 @@ export default {
   }
 };
 </script>
+
+<template lang="pug">
+  section
+    h1 Animals looking to be adopted
+    section
+      label(for='city-select') Cities:
+      select(name='city' id='city-select' v-model='selectedCity' @change='filterAnimals()')
+        option(v-for='city in cityList' :value='city') {{ city }}
+      p Type:
+      template(v-for='type in typeList')
+        input(type='radio' :id='type' name='type' :value='type' v-model='selectedType' @change='filterAnimals()')
+        label(:for='type') {{ type }}
+    ul(v-if='animals.length > 0')
+      AnimalCard(v-for='animal in animals' :animal='animal')
+    p(v-else) No animals
+</template>
