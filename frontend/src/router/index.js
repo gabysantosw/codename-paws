@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import Register from '../views/register.vue';
+import Account from '../views/account.vue';
 
 Vue.use(VueRouter);
 
@@ -24,7 +25,6 @@ export default store => {
       {
         path: '/animals',
         name: 'Animals',
-        props: true,
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/animals.vue')
       },
@@ -39,8 +39,13 @@ export default store => {
         component: () => import(/* webpackChunkName: "about" */ '../views/detailed-animal.vue')
       },
       {
+        path: '/posts/:id',
+        name: 'DetailedPost',
+        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-post.vue')
+      },
+      {
         path: '/register',
-        name: 'register',
+        name: 'Register',
         component: Register,
         beforeEnter(to, from, next) {
           if (store.state.account) return next('/');
@@ -49,12 +54,27 @@ export default store => {
       },
       {
         path: '/login',
-        name: 'login',
+        name: 'Login',
         component: Login,
         beforeEnter(to, from, next) {
           if (store.state.account) return next('/');
           return next();
         }
+      },
+      {
+        path: '/account',
+        name: 'Account',
+        component: Account
+      },
+      {
+        path: '/account/add-animal',
+        name: 'AddAnimal',
+        component: () => import(/* webpackChunkName: "about" */ '../views/add-animal.vue')
+      },
+      {
+        path: '/account/add-post',
+        name: 'AddPost',
+        component: () => import(/* webpackChunkName: "about" */ '../views/add-post.vue')
       }
     ]
   });

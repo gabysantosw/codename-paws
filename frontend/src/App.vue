@@ -24,6 +24,7 @@ export default {
       router-link(to="/animals") Animals
       router-link(v-if='!account' to="/login") Login
       router-link(v-if='!account' to="/register") Register
+      router-link(v-if='account' to='/account') Account
       button(v-if='account' @click='doLogout') Logout
     p(v-if='account') Logged in
     p(v-else) NOT logged in
