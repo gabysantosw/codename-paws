@@ -43,6 +43,18 @@ const store = new Vuex.Store({
       const request = await axios.get(`/api/animals/${animalId}`);
       return request.data;
     },
+    async postAnimal(store, animal) {
+      const request = await axios.post(`/api/shelters/${animal.shelterId}/animals`, animal);
+      return request.data;
+    },
+    async fetchPostById(store, postId) {
+      const request = await axios.get(`/api/posts/${postId}`);
+      return request.data;
+    },
+    async postPost(store, post) {
+      const request = await axios.post(`/api/shelters/${post.shelterId}/posts`, post);
+      return request.data;
+    },
     // AUTHENTICATION
     async fetchSession({ commit }) {
       const account = await axios.get('/api/account/session');
