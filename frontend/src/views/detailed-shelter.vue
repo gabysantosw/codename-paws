@@ -7,11 +7,11 @@ export default {
   components: { AnimalCard },
   data() {
     return {
-      user: null
+      shelter: null
     };
   },
   async mounted() {
-    this.user = await this.fetchShelterById(this.$route.params.id);
+    this.shelter = await this.fetchShelterById(this.$route.params.id);
   },
   methods: {
     ...mapActions(['fetchShelterById'])
@@ -20,12 +20,12 @@ export default {
 </script>
 
 <template lang="pug">
-  li(v-if='user') 
-    h2 {{ user.name }}
-    p Location: {{ user.city }}. 
-    h3(v-if='user.animals.length > 0') Animals in care ({{ user.animals.length }})
-    ul(v-if='user.animals.length > 0')
-      AnimalCard(v-for='animal in user.animals' :animal='animal')
+  li(v-if='shelter') 
+    h2 {{ shelter.name }}
+    p Location: {{ shelter.city }}. 
+    h3(v-if='shelter.animals.length > 0') Animals in care ({{ shelter.animals.length }})
+    ul(v-if='shelter.animals.length > 0')
+      AnimalCard(v-for='animal in shelter.animals' :animal='animal')
     h3 Latest Updates
     ul(v-if='user.posts.length > 0')
       li(v-for='post in user.posts') {{ post. title }}
