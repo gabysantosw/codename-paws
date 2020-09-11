@@ -16,6 +16,15 @@ router.get('/', async (req, res) => {
   res.send(queryList);
 });
 
+// GET post by id
+router.get('/:postId', async (req, res) => {
+  const post = await Post.findById(req.params.postId);
+  // no animal was found with that id
+  if (!post) return res.sendStatus(404);
+
+  return res.send(post);
+});
+
 // DELETE post by ID
 router.delete('/:postId', async (req, res) => {
   const user = await Post.findOneAndRemove({ _id: req.params.postId });
