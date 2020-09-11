@@ -22,5 +22,3 @@ export default {
     h2 {{ animal.name }}
     p Location: {{ animal.city }}. Type: {{ animal.type }}
 </template>
-
-<style lang="scss"></style>

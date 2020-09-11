@@ -10,5 +10,3 @@ export default {
   props: ['animal']
 };
 </script>
-
-<style lang="scss"></style>
