@@ -6,20 +6,19 @@ const Shelter = require('../models/shelter');
 const router = express.Router();
 
 router.get('/session', (req, res) => {
-  res.send(req.session);
+  res.send(req.user);
 });
 
 // to create new Shelter accounts
-router.post('/', async req => {
-  const { name, age, email, password } = req.body;
+router.post('/', async (req, res) => {
+  const { name, city, email, password } = req.body;
 
-  const account = new Shelter({ name, age, email });
-  await account.setPassword(password);
-  await account.save();
+  const account = await Shelter.register({ name, city, email }, password);
 
-  return account;
+  res.send(account);
 });
 
+// login
 router.post('/session', passport.authenticate('local', { failWithError: true }), async (req, res) =>
   res.send(req.user)
 );
@@ -27,8 +26,8 @@ router.post('/session', passport.authenticate('local', { failWithError: true }),
 router.delete('/session', async (req, res, next) => {
   await req.logout();
 
-  req.session.regenerate(err => {
-    if (err) return next(err);
+  req.session.regenerate(error => {
+    if (error) return next(error);
 
     return res.sendStatus(200);
   });
