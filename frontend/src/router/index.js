@@ -80,6 +80,11 @@ export default store => {
         path: '/account/add-post',
         name: 'AddPost',
         component: () => import(/* webpackChunkName: "about" */ '../views/add-post.vue')
+      },
+      {
+        path: '/account/view-posts',
+        name: 'ViewPosts',
+        component: () => import(/* webpackChunkName: "about" */ '../views/view-posts.vue')
       }
     ]
   });
