@@ -72,6 +72,11 @@ export default store => {
         component: () => import(/* webpackChunkName: "about" */ '../views/add-animal.vue')
       },
       {
+        path: '/account/view-animals',
+        name: 'ViewAnimals',
+        component: () => import(/* webpackChunkName: "about" */ '../views/view-animals.vue')
+      },
+      {
         path: '/account/add-post',
         name: 'AddPost',
         component: () => import(/* webpackChunkName: "about" */ '../views/add-post.vue')
