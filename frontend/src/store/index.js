@@ -35,6 +35,10 @@ const store = new Vuex.Store({
       const request = await axios.get(`/api/shelters/${shelterId}/animals`);
       return request.data;
     },
+    async fetchShelterPosts(store, shelterId) {
+      const request = await axios.get(`/api/shelters/${shelterId}/posts`);
+      return request.data;
+    },
     async fetchAnimals() {
       const request = await axios.get('/api/animals');
       return request.data;
@@ -61,6 +65,10 @@ const store = new Vuex.Store({
     },
     async postPost(store, post) {
       const request = await axios.post(`/api/shelters/${post.shelterId}/posts`, post);
+      return request.data;
+    },
+    async deletePostById(store, postId) {
+      const request = await axios.delete(`/api/posts/${postId}`);
       return request.data;
     },
     // AUTHENTICATION
