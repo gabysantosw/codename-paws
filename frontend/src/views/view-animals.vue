@@ -27,6 +27,7 @@ export default {
 <template lang="pug">
   main
     h1 All animals
+    router-link(to='/account/add-animal') Add animal
     ul 
       li(v-for='animal of animals') 
         span {{ animal.name }}
