@@ -50,7 +50,7 @@ export default {
       label(for='city') City: 
       input(id='city' type='text' v-model='city' required)
       br
-      input(type='radio' id='dog' name='type' value='Dog' v-model='type')
+      input(type='radio' id='dog' name='type' value='Dog' v-model='type' required)
       label(for='dog') Dog
       input(type='radio' id='cat' name='type' value='Cat' v-model='type')
       label(for='cat') Cat
