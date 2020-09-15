@@ -44,5 +44,13 @@ router.delete('/:animalId', async (req, res) => {
 });
 
 // PUT / update animal by ID
+router.put('/:animalId', async (req, res) => {
+  const animal = await Animal.findOneAndUpdate({ _id: req.params.animalId }, req.body);
+
+  if (!animal) return res.sendStatus(404);
+
+  // removed successfully
+  return res.sendStatus(200);
+});
 
 module.exports = router;
