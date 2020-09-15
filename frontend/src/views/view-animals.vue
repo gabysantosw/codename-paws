@@ -31,5 +31,6 @@ export default {
     ul 
       li(v-for='animal of animals') 
         span {{ animal.name }}
+        router-link(:to='{ path: `/account/edit-animal`, query: { animalId: animal._id }}') Edit
         button(@click='deleteAnimal(animal._id)') Remove
 </template>
