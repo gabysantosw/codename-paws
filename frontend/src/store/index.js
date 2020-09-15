@@ -55,6 +55,10 @@ const store = new Vuex.Store({
       const request = await axios.post(`/api/shelters/${animal.shelterId}/animals`, animal);
       return request.data;
     },
+    async updateAnimalById(store, { animalId, animal }) {
+      const request = await axios.put(`/api/animals/${animalId}`, animal);
+      return request.data;
+    },
     async deleteAnimalById(store, animalId) {
       const request = await axios.delete(`/api/animals/${animalId}`);
       return request.data;
