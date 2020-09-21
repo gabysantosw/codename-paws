@@ -87,6 +87,11 @@ export default store => {
         component: () => import(/* webpackChunkName: "about" */ '../views/add-post.vue')
       },
       {
+        path: '/account/edit-post',
+        name: 'EditPost',
+        component: () => import(/* webpackChunkName: "about" */ '../views/edit-post.vue')
+      },
+      {
         path: '/account/view-posts',
         name: 'ViewPosts',
         component: () => import(/* webpackChunkName: "about" */ '../views/view-posts.vue')
