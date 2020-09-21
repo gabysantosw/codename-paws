@@ -33,8 +33,4 @@ export default {
 
 <style lang="scss">
 @import '@/styles/main.scss';
-
-a {
-  padding: 0 0.5em;
-}
 </style>
