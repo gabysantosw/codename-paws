@@ -37,5 +37,13 @@ router.delete('/:postId', async (req, res) => {
 });
 
 // PUT / update post by ID
+router.put('/:postId', async (req, res) => {
+  const post = await Post.findOneAndUpdate({ _id: req.params.postId }, req.body);
+
+  if (!post) return res.sendStatus(404);
+
+  // removed successfully
+  return res.sendStatus(200);
+});
 
 module.exports = router;
