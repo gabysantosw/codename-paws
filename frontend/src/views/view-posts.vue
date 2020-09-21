@@ -31,5 +31,6 @@ export default {
     ul 
       li(v-for='post of posts') 
         span {{ post.title }}
+        router-link(:to='{ path: `/account/edit-post`, query: { postId: post._id }}') Edit
         button(@click='deletePost(post._id)') Remove
 </template>
