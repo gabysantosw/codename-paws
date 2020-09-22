@@ -74,6 +74,14 @@ router.delete('/:shelterId', async (req, res) => {
 });
 
 // PUT / update Shelter by ID
+router.put('/:shelterId', async (req, res) => {
+  const shelter = await Shelter.findOneAndUpdate({ _id: req.params.shelterId }, req.body);
+
+  if (!shelter) return res.sendStatus(404);
+
+  // removed successfully
+  return res.sendStatus(200);
+});
 
 // <--===---===-->
 // <--===---===--> ANIMAL <--===---===--> //
