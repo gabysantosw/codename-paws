@@ -67,6 +67,11 @@ export default store => {
         component: Account
       },
       {
+        path: '/account/edit-shelter',
+        name: 'EditShelter',
+        component: () => import(/* webpackChunkName: "about" */ '../views/edit-shelter.vue'),
+      },
+      {
         path: '/account/add-animal',
         name: 'AddAnimal',
         component: () => import(/* webpackChunkName: "about" */ '../views/add-animal.vue')
