@@ -9,7 +9,7 @@ export default {
       city: '',
       email: '',
       password: '',
-      backendError: null
+      backendError: null,
     };
   },
   methods: {
@@ -22,15 +22,15 @@ export default {
           name: this.name,
           city: this.city,
           email: this.email,
-          password: this.password
+          password: this.password,
         });
 
         this.$router.push('/login');
       } catch (error) {
         this.backendError = error.response.data.message;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

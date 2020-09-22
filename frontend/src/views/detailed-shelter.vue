@@ -9,15 +9,15 @@ export default {
   components: { AnimalCard, PostCard },
   data() {
     return {
-      shelter: null
+      shelter: null,
     };
   },
   async mounted() {
     this.shelter = await this.fetchShelterById(this.$route.params.id);
   },
   methods: {
-    ...mapActions(['fetchShelterById'])
-  }
+    ...mapActions(['fetchShelterById']),
+  },
 };
 </script>
 

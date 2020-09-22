@@ -5,7 +5,7 @@ export default {
   name: 'ViewPosts',
   data() {
     return {
-      posts: []
+      posts: [],
     };
   },
   async created() {
@@ -16,11 +16,11 @@ export default {
     async deletePost(id) {
       await this.deletePostById(id);
       this.posts = await this.fetchShelterPosts(this.account._id);
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

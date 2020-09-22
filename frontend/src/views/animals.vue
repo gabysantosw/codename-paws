@@ -11,7 +11,7 @@ export default {
       cityList: [],
       typeList: [],
       selectedCity: 'All',
-      selectedType: 'All'
+      selectedType: 'All',
     };
   },
   async created() {
@@ -39,7 +39,7 @@ export default {
     async filterAnimals() {
       this.animals = await this.fetchAnimalsBy(this.query);
     },
-    ...mapActions(['fetchAnimals', 'fetchAnimalsBy'])
+    ...mapActions(['fetchAnimals', 'fetchAnimalsBy']),
   },
   computed: {
     query() {
@@ -47,8 +47,8 @@ export default {
       if (this.selectedCity !== 'All') params.city = this.selectedCity;
       if (this.selectedType !== 'All') params.type = this.selectedType;
       return params;
-    }
-  }
+    },
+  },
 };
 </script>
 

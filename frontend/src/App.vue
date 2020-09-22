@@ -8,11 +8,11 @@ export default {
     async doLogout() {
       await this.logout();
       this.$router.push('/login');
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      title: ''
+      title: '',
     };
   },
   methods: {
@@ -18,15 +18,15 @@ export default {
     async updateAnimal(event) {
       event.preventDefault();
       const updatedPost = {
-        title: this.title
+        title: this.title,
       };
       await this.updatePostById({ postId: this.$route.query.postId, post: updatedPost });
       this.$router.push('/account');
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

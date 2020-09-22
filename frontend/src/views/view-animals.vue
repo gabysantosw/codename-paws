@@ -5,7 +5,7 @@ export default {
   name: 'ViewAnimals',
   data() {
     return {
-      animals: []
+      animals: [],
     };
   },
   async created() {
@@ -16,11 +16,11 @@ export default {
     async deleteAnimal(id) {
       await this.deleteAnimalById(id);
       this.animals = await this.fetchShelterAnimals(this.account._id);
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

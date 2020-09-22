@@ -9,7 +9,7 @@ export default {
     return {
       shelters: [],
       cityList: [],
-      selectedCity: 'All'
+      selectedCity: 'All',
     };
   },
   async created() {
@@ -28,7 +28,7 @@ export default {
     ...mapActions(['fetchShelters', 'fetchSheltersBy']),
     async filterShelters() {
       this.shelters = await this.fetchSheltersBy(this.query);
-    }
+    },
   },
   computed: {
     query() {
@@ -36,8 +36,8 @@ export default {
       if (this.selectedCity !== 'All') params.city = this.selectedCity;
       if (this.selectedType !== 'All') params.type = this.selectedType;
       return params;
-    }
-  }
+    },
+  },
 };
 </script>
 

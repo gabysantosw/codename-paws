@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       title: '',
-      backendError: null
+      backendError: null,
     };
   },
   methods: {
@@ -17,7 +17,7 @@ export default {
       try {
         const post = {
           title: this.title,
-          shelterId: this.account._id
+          shelterId: this.account._id,
         };
         await this.postPost(post);
 
@@ -25,11 +25,11 @@ export default {
       } catch (error) {
         this.backendError = error.response.data.message;
       }
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

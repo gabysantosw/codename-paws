@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       cityList: [],
-      selectedCity: 'All'
+      selectedCity: 'All',
     };
   },
   async created() {
@@ -22,8 +22,8 @@ export default {
     );
   },
   methods: {
-    ...mapActions(['fetchAnimals'])
-  }
+    ...mapActions(['fetchAnimals']),
+  },
 };
 </script>
 

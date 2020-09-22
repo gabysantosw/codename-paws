@@ -11,7 +11,7 @@ export default {
       name: '',
       city: '',
       type: '',
-      backendError: null
+      backendError: null,
     };
   },
   methods: {
@@ -24,7 +24,7 @@ export default {
           name: this.name,
           city: this.city,
           type: this.type,
-          shelterId: this.account._id
+          shelterId: this.account._id,
         };
         await this.postAnimal(animal);
 
@@ -32,11 +32,11 @@ export default {
       } catch (error) {
         this.backendError = error.response.data.message;
       }
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

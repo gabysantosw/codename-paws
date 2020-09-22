@@ -4,7 +4,7 @@ import ShelterAnimal from '@/components/shelter-animal.vue';
 export default {
   name: 'ShelterCard',
   props: ['shelter'],
-  components: { ShelterAnimal }
+  components: { ShelterAnimal },
 };
 </script>
 

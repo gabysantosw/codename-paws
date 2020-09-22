@@ -5,15 +5,15 @@ export default {
   name: 'DetailedAnimal',
   data() {
     return {
-      animal: null
+      animal: null,
     };
   },
   async mounted() {
     this.animal = await this.fetchAnimalById(this.$route.params.id);
   },
   methods: {
-    ...mapActions(['fetchAnimalById'])
-  }
+    ...mapActions(['fetchAnimalById']),
+  },
 };
 </script>
 

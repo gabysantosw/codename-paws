@@ -13,7 +13,7 @@ export default {
     return {
       name: '',
       city: '',
-      type: ''
+      type: '',
     };
   },
   methods: {
@@ -23,15 +23,15 @@ export default {
       const updatedAnimal = {
         name: this.name,
         city: this.city,
-        type: this.type
+        type: this.type,
       };
       await this.updateAnimalById({ animalId: this.$route.query.animalId, animal: updatedAnimal });
       this.$router.push('/account');
-    }
+    },
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 

@@ -6,6 +6,6 @@
 <script>
 export default {
   name: 'PostCard',
-  props: ['post']
+  props: ['post'],
 };
 </script>

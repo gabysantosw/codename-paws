@@ -1,7 +1,7 @@
 <script>
 export default {
   name: 'ShelterAnimal',
-  props: ['animal']
+  props: ['animal'],
 };
 </script>
 
