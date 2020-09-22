@@ -8,22 +8,23 @@ export default {
   },
   data() {
     return {
-      shelter: null
+      shelter: null,
     };
   },
   methods: {
-    ...mapActions(['fetchShelterById'])
+    ...mapActions(['fetchShelterById', 'deleteShelterById']),
   },
   computed: {
-    ...mapState(['account'])
-  }
+    ...mapState(['account']),
+  },
 };
 </script>
 
 <template lang="pug">
   section(v-if='shelter')
     h1 Account information
-    p {{ shelter.name }}
+    p {{ shelter.name }} - {{ account.city }}
+    router-link(to='/account/edit-shelter') Edit information
     h2 Animals in care ({{ shelter.animals.length }})
     router-link(to='/account/add-animal') Add animal
     router-link(v-if='shelter.animals.length' to='/account/view-animals') View all
