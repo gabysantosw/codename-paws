@@ -15,33 +15,33 @@ export default store => {
       {
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
       },
       {
         path: '/shelters',
         name: 'Shelters',
-        component: () => import(/* webpackChunkName: "about" */ '../views/shelters.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/shelters.vue'),
       },
       {
         path: '/animals',
         name: 'Animals',
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/animals.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/animals.vue'),
       },
       {
         path: '/shelters/:id',
         name: 'DetailedShelter',
-        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-shelter.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-shelter.vue'),
       },
       {
         path: '/animals/:id',
         name: 'DetailedAnimal',
-        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-animal.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-animal.vue'),
       },
       {
         path: '/posts/:id',
         name: 'DetailedPost',
-        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-post.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/detailed-post.vue'),
       },
       {
         path: '/register',
@@ -50,7 +50,7 @@ export default store => {
         beforeEnter(to, from, next) {
           if (store.state.account) return next('/');
           return next();
-        }
+        },
       },
       {
         path: '/login',
@@ -59,12 +59,12 @@ export default store => {
         beforeEnter(to, from, next) {
           if (store.state.account) return next('/');
           return next();
-        }
+        },
       },
       {
         path: '/account',
         name: 'Account',
-        component: Account
+        component: Account,
       },
       {
         path: '/account/edit-shelter',
@@ -74,33 +74,33 @@ export default store => {
       {
         path: '/account/add-animal',
         name: 'AddAnimal',
-        component: () => import(/* webpackChunkName: "about" */ '../views/add-animal.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/add-animal.vue'),
       },
       {
         path: '/account/edit-animal',
         name: 'EditAnimal',
-        component: () => import(/* webpackChunkName: "about" */ '../views/edit-animal.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/edit-animal.vue'),
       },
       {
         path: '/account/view-animals',
         name: 'ViewAnimals',
-        component: () => import(/* webpackChunkName: "about" */ '../views/view-animals.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/view-animals.vue'),
       },
       {
         path: '/account/add-post',
         name: 'AddPost',
-        component: () => import(/* webpackChunkName: "about" */ '../views/add-post.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/add-post.vue'),
       },
       {
         path: '/account/edit-post',
         name: 'EditPost',
-        component: () => import(/* webpackChunkName: "about" */ '../views/edit-post.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/edit-post.vue'),
       },
       {
         path: '/account/view-posts',
         name: 'ViewPosts',
-        component: () => import(/* webpackChunkName: "about" */ '../views/view-posts.vue')
-      }
-    ]
+        component: () => import(/* webpackChunkName: "about" */ '../views/view-posts.vue'),
+      },
+    ],
   });
 };

@@ -11,12 +11,12 @@ const SET_ACCOUNT = 'set account';
 
 const store = new Vuex.Store({
   state: {
-    account: null
+    account: null,
   },
   mutations: {
     [SET_ACCOUNT](state, account) {
       state.account = account;
-    }
+    },
   },
   actions: {
     async fetchShelters() {
@@ -98,9 +98,9 @@ const store = new Vuex.Store({
     async logout({ commit }) {
       await axios.delete('/api/account/session');
       commit(SET_ACCOUNT, null);
-    }
+    },
   },
-  modules: {}
+  modules: {},
 });
 
 export default async () => {
