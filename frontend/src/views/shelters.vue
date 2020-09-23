@@ -23,6 +23,12 @@ export default {
       },
       ['All']
     );
+
+    // a city can be passed from the Home city selector
+    if (this.$route.params.passedCity) {
+      this.selectedCity = this.$route.params.passedCity;
+      this.filterShelters();
+    }
   },
   methods: {
     ...mapActions(['fetchShelters', 'fetchSheltersBy']),
