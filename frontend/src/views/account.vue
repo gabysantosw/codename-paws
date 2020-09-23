@@ -12,7 +12,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['fetchShelterById', 'deleteShelterById']),
+    ...mapActions(['fetchShelterById', 'deleteShelterById', 'logout']),
+    async deleteAccount() {
+      await this.deleteShelterById(this.account._id);
+      await this.logout();
+      this.$router.push('/');
+    },
   },
   computed: {
     ...mapState(['account']),
@@ -23,8 +28,9 @@ export default {
 <template lang="pug">
   section(v-if='shelter')
     h1 Account information
-    p {{ shelter.name }} - {{ account.city }}
+    p {{ shelter.name }} - {{ shelter.city }}
     router-link(to='/account/edit-shelter') Edit information
+    button(@click='deleteAccount') Delete account
     h2 Animals in care ({{ shelter.animals.length }})
     router-link(to='/account/add-animal') Add animal
     router-link(v-if='shelter.animals.length' to='/account/view-animals') View all
