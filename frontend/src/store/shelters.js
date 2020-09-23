@@ -27,6 +27,10 @@ const shelters = {
       const request = await axios.put(`/api/shelters/${shelterId}`, shelter);
       return request.data;
     },
+    async deleteShelterById(store, shelterId) {
+      const request = await axios.delete(`/api/shelters/${shelterId}`);
+      return request.data;
+    },
   },
 };
 
