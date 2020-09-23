@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
 // GET Shelter by id
 router.get('/:shelterId', async (req, res) => {
   const shelter = await Shelter.findById(req.params.shelterId);
-  // no user was found with that id -> 404 error
+  // no shelter was found with that id -> 404 error
   if (!shelter) return res.sendStatus(404);
 
   return res.send(shelter);
@@ -64,10 +64,13 @@ router.get('/:shelterId', async (req, res) => {
 
 // DELETE Shelter by id
 router.delete('/:shelterId', async (req, res) => {
-  const user = await Shelter.findOneAndRemove({ _id: req.params.shelterId });
-  // .findOneAndRemove returns the deleted user
-  // so if there's none, no user with that Id was found -> 404
-  if (!user) return res.sendStatus(404);
+  const shelter = await Shelter.findOneAndRemove({ _id: req.params.shelterId });
+  // .findOneAndRemove returns the deleted shelter
+  // so if there's none, no shelter with that Id was found -> 404
+  if (!shelter) return res.sendStatus(404);
+
+  await Animal.deleteMany({ _id: { $in: shelter.animals } });
+  await Post.deleteMany({ _id: { $in: shelter.posts } });
 
   // removed successfully
   return res.sendStatus(200);
@@ -119,7 +122,7 @@ router.post('/:shelterId/animals', async (req, res) => {
 // GET all posts from the same Shelter
 router.get('/:shelterId/posts', async (req, res) => {
   const shelter = await Shelter.findById(req.params.shelterId);
-  // no user was found with that id -> 404 error
+  // no shelter was found with that id -> 404 error
   if (!shelter) return res.sendStatus(404);
 
   return res.send(shelter.posts);
@@ -128,7 +131,7 @@ router.get('/:shelterId/posts', async (req, res) => {
 // POST new post in a given Shelter
 router.post('/:shelterId/posts', async (req, res) => {
   const shelter = await Shelter.findById(req.params.shelterId);
-  // no user was found with that id -> 404 error
+  // no shelter was found with that id -> 404 error
   if (!shelter) return res.sendStatus(404);
 
   const post = await Post.create({ title: req.body.title });
