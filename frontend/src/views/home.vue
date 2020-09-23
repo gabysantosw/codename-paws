@@ -30,7 +30,11 @@ export default {
 <template lang="pug">
   section
     h1 Adopt animals or find shelters near you
-    router-link(to='/animals') Check adoptable pets
+    label(for='city-select') Cities:
+    select(name='city' id='city-select' v-model='selectedCity')
+      option(v-for='city in cityList' :value='city') {{ city }}
     br
-    router-link(to='/shelters') Show shelters
+    router-link(:to="{ name: 'Animals', params: { passedCity: selectedCity }}") Check adoptable pets
+    br
+    router-link(:to="{ name: 'Shelters', params: { passedCity: selectedCity }}") Show shelters
 </template>
