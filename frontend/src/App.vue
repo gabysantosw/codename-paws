@@ -7,7 +7,7 @@ export default {
     ...mapActions(['logout']),
     async doLogout() {
       await this.logout();
-      this.$router.push('/login');
+      this.$router.push('/');
     },
   },
   computed: {
