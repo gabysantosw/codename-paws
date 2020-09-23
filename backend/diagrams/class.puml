@@ -1,0 +1,66 @@
+@startuml Classes Diagram 
+Title Classes Architecture
+
+left to right direction
+skinparam Monochrome true
+skinparam BackgroundColor LightGray
+skinparam ClassBackgroundColor GhostWhite
+skinparam ClassFontSize 16
+skinparam ClassFontStyle bold
+skinparam ClassBorderThickness 2
+skinparam ClassBorderColor midnightblue
+skinparam ClassHeaderBackgroundColor midnightblue
+skinparam ClassFontColor ghostwhite
+skinparam ArrowColor black
+skinparam ArrowThickness 2
+skinparam roundCorner 16
+skinparam Shadowing false
+skinparam Padding 2
+
+class Shelter {
+  name: String
+  city: String
+  email: String
+  creationDate : Date
+  photo : String
+  description : String
+  links : Array
+  socials : Array
+  acceptsVolunteers : Boolean
+  acceptsDonations : Boolean
+
+  animals : [Animal]
+  posts : [Post]
+
+  constructor(name: String, city: String)
+  addAnimal(animal: Animal)
+  addPost(post: Post)
+}
+
+class Animal {
+  name: String
+  photo: String
+  description: String
+  isAdoptable: Boolean
+  isAdopted : Boolean
+  
+  constructor(name: String)
+}
+
+class Post {
+  title: String
+  photo: String
+  content: String
+  tags: Array
+  creationDate: Date
+  animals: [Animal]
+    
+  constructor(title: String)
+}
+
+
+Shelter "1" o--> "0..*" Animal : cares for
+Shelter "1" o--> "0..*" Post : created
+Animal "1" o---> "0..*" Post : appears on
+Post "1" o--> "0..*" Animal : includes
+@enduml
