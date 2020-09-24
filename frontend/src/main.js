@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './app.vue';
+import App from './appp.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
@@ -12,7 +12,7 @@ async function main() {
   new Vue({
     router: router(storeInstance),
     store: storeInstance,
-    render: h => h(App)
+    render: h => h(App),
   }).$mount('#app');
 }
 
