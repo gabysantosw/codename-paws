@@ -6,7 +6,22 @@ WORKDIR /app
 
 ADD package.json package-lock.json ./
 
-RUN npm install
+# needed for jpeg compression
+RUN apk --no-cache add shadow \                                                                   
+  gcc \                                                                                         
+  musl-dev \                                                                                    
+  autoconf \                                                                                    
+  automake \                                                                                    
+  make \                                                                                        
+  libtool \                                                                                     
+  nasm \                                                                                        
+  tiff \                                                                                        
+  jpeg \                                                                                        
+  zlib \                                                                                        
+  zlib-dev \                                                                                    
+  file \                                                                                        
+  pkgconf \  
+  && npm install
 
 ADD bin ./bin
 
