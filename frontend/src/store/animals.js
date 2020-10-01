@@ -24,8 +24,12 @@ const animals = {
       });
       return request.data;
     },
-    async updateAnimalById(store, { animalId, animal }) {
-      const request = await axios.put(`/api/animals/${animalId}`, animal);
+    async updateAnimalById(store, animal) {
+      const request = await axios.put(`/api/animals/${animal.get('animalId')}`, animal, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return request.data;
     },
     async deleteAnimalById(store, animalId) {

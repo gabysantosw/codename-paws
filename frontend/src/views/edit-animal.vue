@@ -20,12 +20,16 @@ export default {
     ...mapActions(['fetchAnimalById', 'updateAnimalById']),
     async updateAnimal(event) {
       event.preventDefault();
-      const updatedAnimal = {
-        name: this.name,
-        city: this.city,
-        type: this.type,
-      };
-      await this.updateAnimalById({ animalId: this.$route.query.animalId, animal: updatedAnimal });
+
+      const form = new FormData();
+      form.append('shelterId', this.account._id);
+      form.append('animalId', this.$route.query.animalId);
+      form.append('name', this.name);
+      form.append('city', this.city);
+      form.append('type', this.type);
+      form.append('file', this.$refs.file.files[0]);
+
+      await this.updateAnimalById(form);
       this.$router.push('/account');
     },
   },
