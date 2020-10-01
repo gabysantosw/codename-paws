@@ -50,6 +50,9 @@ export default {
       label(for='city') City: 
       input(id='city' type='text' v-model='city' required)
       br
+      label(for='image') Picture:
+      input(id='image' ref='file' type='file' accept='.jpg, .jpeg, .png')
+      br
       input(type='radio' id='dog' name='type' value='Dog' v-model='type' required)
       label(for='dog') Dog
       input(type='radio' id='cat' name='type' value='Cat' v-model='type')
