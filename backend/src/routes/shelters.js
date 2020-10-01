@@ -1,4 +1,5 @@
 const express = require('express');
+const { uploadImage } = require('../helpers/cloud-storage');
 
 const router = express.Router();
 
@@ -102,14 +103,25 @@ router.get('/:shelterId/animals', async (req, res) => {
 // POST new animal to a given Shelter
 router.post('/:shelterId/animals', async (req, res) => {
   const shelter = await Shelter.findById(req.params.shelterId);
+
   // no shelter was found with that id -> 404 error
   if (!shelter) return res.sendStatus(404);
 
   // if no city is given, default to the one in the shelter
+  const { name, type } = req.body;
   let { city } = req.body;
   if (!city) city = shelter.city;
 
-  const animal = await Animal.create({ name: req.body.name, city, type: req.body.type });
+  // if an image was given, upload to cloud storage
+  // when no file was added in the form req.file = undefined
+  let imageUrl;
+  if (req.file) {
+    const { originalname, buffer } = req.file;
+
+    imageUrl = await uploadImage(buffer, originalname, `${shelter.name}-${req.body.name}-${shelter.animals.length}`);
+  }
+
+  const animal = await Animal.create({ name, city, type, image: imageUrl });
   await shelter.addAnimal(animal);
 
   return res.send(animal);
