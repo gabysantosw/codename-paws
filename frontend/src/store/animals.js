@@ -16,7 +16,12 @@ const animals = {
       return request.data;
     },
     async postAnimal(store, animal) {
-      const request = await axios.post(`/api/shelters/${animal.shelterId}/animals`, animal);
+      // animal === FormData object
+      const request = await axios.post(`/api/shelters/${animal.get('shelterId')}/animals`, animal, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return request.data;
     },
     async updateAnimalById(store, { animalId, animal }) {
