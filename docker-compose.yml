@@ -16,6 +16,8 @@ services:
       - 'traefik.enable=true'
       - 'traefik.http.routers.frontend.rule=Host(`app.localhost`)'
       - 'traefik.http.routers.frontend.entrypoints=web'
+    logging:
+      driver: none
   backend:
     image: backend
     build:
