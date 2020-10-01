@@ -7,6 +7,7 @@ const cors = require('cors');
 const passport = require('passport');
 const helmet = require('helmet');
 const sanitize = require('express-mongo-sanitize');
+const multer = require('multer');
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -20,6 +21,13 @@ const animalsRouter = require('./routes/animals');
 const postsRouter = require('./routes/posts');
 
 const app = express();
+
+const multerMid = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 6 * 1024 * 1024, // 6mb
+  },
+});
 
 app.use(helmet());
 
@@ -58,6 +66,8 @@ app.use(
     },
   })
 );
+
+app.use(multerMid.single('file'));
 
 app.use(passport.initialize());
 app.use(passport.session());
