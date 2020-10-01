@@ -20,13 +20,14 @@ export default {
       event.preventDefault();
 
       try {
-        const animal = {
-          name: this.name,
-          city: this.city,
-          type: this.type,
-          shelterId: this.account._id,
-        };
-        await this.postAnimal(animal);
+        const form = new FormData();
+        form.append('shelterId', this.account._id);
+        form.append('name', this.name);
+        form.append('city', this.city);
+        form.append('type', this.type);
+        form.append('file', this.$refs.file.files[0]);
+
+        await this.postAnimal(form);
 
         this.$router.push('/account');
       } catch (error) {
