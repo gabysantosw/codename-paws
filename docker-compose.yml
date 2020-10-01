@@ -23,6 +23,8 @@ services:
     build:
       context: backend
       dockerfile: dev.Dockerfile
+    env_file:
+      - backend/.env
     environment:
       - MONGODB_CONNECTION_STRING=mongodb://mongo/codename-paws
     labels:
