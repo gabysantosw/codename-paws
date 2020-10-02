@@ -59,6 +59,8 @@ app.use(sanitize({ replaceWith: '_' }));
 app.use(
   session({
     secret: ['superdupersecuresecret', 'notasuperdupersecuresecret'],
+    resave: true,
+    saveUninitialized: true,
     store: new MongoStore({ mongooseConnection, stringify: false }),
     cookie: {
       maxAge: 30 * 24 * 60 * 60 * 1000,

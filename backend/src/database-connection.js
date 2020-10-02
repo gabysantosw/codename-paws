@@ -6,6 +6,7 @@ const connectionString = process.env.MONGODB_CONNECTION_STRING || '';
 
 mongoose
   .connect(connectionString, {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
