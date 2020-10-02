@@ -5,3 +5,14 @@ body {
 a {
   padding: 0 0.5em;
 }
+
+input,
+button,
+a,
+select {
+  &:focus {
+    outline: 3px solid lightseagreen;
+    outline-offset: 0.25em;
+  }
+}
+
