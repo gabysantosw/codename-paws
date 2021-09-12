@@ -2,50 +2,8 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
-// const mongoose = require('mongoose');
-// const { MongoMemoryServer } = require('mongodb-memory-server');
-
 const supertest = require('supertest');
 const app = require('../src/app');
-
-// const CaretakerModel = require('../src/models/caretaker');
-// const AnimalModel = require('../src/models/animal');
-// const PostModel = require('../src/models/post');
-
-// // Start MongoDB instance
-// const mongod = new MongoMemoryServer();
-
-// // start the database and populate records before testing
-// beforeAll(async () => {
-//   const uri = await mongod.getConnectionString();
-//   const debug = false;
-//   await mongoose
-//     .connect(uri, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       useCreateIndex: true,
-//     })
-//     .then(() => {
-//       if (debug) {
-//         console.log('Fake Mongo connected');
-//       }
-//     })
-//     .catch(err => console.error(err.message));
-
-//   // populating database with dummy data
-//   const testShelter = new CaretakerModel({ name: 'Coyote', city: 'Pawnee' });
-//   const testAnimal = new AnimalModel({ name: 'Lil', type: 'Dog' });
-//   const testPost = new PostModel({ title: 'Hiii' });
-
-//   await testShelter.save();
-//   await testAnimal.save();
-//   await testPost.save();
-// });
-
-// afterAll(async () => {
-//   await mongoose.disconnect();
-//   await mongod.stop();
-// });
 
 // routes/index.js
 describe('Index', () => {
